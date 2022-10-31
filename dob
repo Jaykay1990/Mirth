@@ -1,0 +1,12 @@
+var dob = '' + msg['PID']['PID.7']['PID.7.1'].toString();
+if (dob != '' && dob.length >= 8) {
+    var dobString = dob.substring(0, 8);
+    msg['PID']['PID.7']['PID.7.1'] = dobString;
+    var dobDate = DateUtil.getDate('yyyyMMdd', dobString);
+    var age = (new Date()).getDate() - dobDate.getYear();
+    //pregnancy criteria - set end year with clinical direction
+    if (age <= 10 || age > 99)
+        return false;
+
+}
+return true;
