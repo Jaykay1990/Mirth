@@ -1,0 +1,64 @@
+//check through each repetition in PID 13 for the relevant numbers
+for each (ptPh in msg['PID']['PID.13'])
+{
+	var phType = ptPh['PID.13.2'].toString()
+	var phNo = ptPh['PID.13.1'].toString()
+
+	if(phType == "L14")
+	//L14 is the designation for Home Phone No
+	{
+		var phHome = phNo
+	}
+
+	if(phType == "L32")
+	//L32 is the deisgnation for Work Phone No
+	{
+		var phBus = phNo
+	}
+
+	if(phType == "L15")
+	//L is the deisgnation for Mobile Phone No
+	{
+		var phMob = phNo
+	}
+	if(phType == "L08")
+	//L is the deisgnation for Mobile Phone No
+	{
+		var email = phNo
+	}
+}
+//clear out PID.13 and PID.14
+msg['PID']['PID.13'] = <PID.13/>;
+msg['PID']['PID.14'] = <PID.14/>;
+
+//Home phone in PID.13.1
+if (phHome != null){
+msg['PID']['PID.13']['PID.13.1']= phHome;
+}
+else if (phHome == null){
+	msg['PID']['PID.13']['PID.13.1'] = "";
+}
+
+//Work number in PID.14.1
+if (phBus != null){
+msg['PID']['PID.14']['PID.14.1']= phBus;
+}
+else if (phBus == null){
+	msg['PID']['PID.14']['PID.14.1'] = "";
+}
+//email in PID.14.4
+if (email != null){
+msg['PID']['PID.14']['PID.14.4']= email;
+}
+else if (phBus == null){
+	msg['PID']['PID.14']['PID.14.4'] = "";
+}
+
+//Mobile No. in PID14.5 - pid.xsl has to be edited to take this
+if (phMob != null){
+ msg['PID']['PID.14']['PID.14.5']= phMob;
+}
+
+else if (phMob == null){
+	msg['PID']['PID.14']['PID.14.5'] = "";
+}
