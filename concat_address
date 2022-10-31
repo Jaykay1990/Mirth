@@ -1,0 +1,5 @@
+var add1 = msg['PID']['PID.11']['PID.11.1'].toString();
+var add2 = msg['PID']['PID.11']['PID.11.2'].toString();
+
+//concat 11.1 and 11.2
+msg['PID']['PID.11']['PID.11.1'] = add1 + ',' + '\\.br\\' + add2 + ',';
