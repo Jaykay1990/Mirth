@@ -1,0 +1,16 @@
+//map the relevant GO details from PD1 to PV1.8
+var gmc = msg['PD1']['PD1.4']['PD1.4.1'].toString();
+var pClass = msg['PV1']['PV1.2']['PV1.2.1'].toString();
+var gpSname = msg['PD1']['PD1.4']['PD1.4.2'].toString();
+var gpFname = msg['PD1']['PD1.4']['PD1.4.3'].toString();
+var gpTitle = msg['PD1']['PD1.4']['PD1.4.6'].toString();
+var gpAddr1 = msg['PD1']['PD1.13']['PD1.13.1'].toString() + '\\.br\\' + msg['PD1']['PD1.13']['PD1.13.2'].toString();
+var gpPcode = msg['PD1']['PD1.13']['PD1.13.3'].toString();
+var gpCountry = msg['PD1']['PD1.13']['PD1.13.6'].toString();
+var gpTel = msg['PD1']['PD1.14']['PD1.14.1'].toString();
+
+//Only place GP details in PV1.8 if Doctor ID is not blank and Patient Class is Outpatient
+if (gmc != "" && pClass != "R"){
+	msg['PV1']['PV1.8'] = gmc + "^" + gpSname + "^" + gpFname + "^^^" + gpTitle + "^" + gpCountry + "^^"
+ + gpPcode + "^" + gpAddr1 + "^^" + gpTel;
+ }
